@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+</head>
+
+<body class='container shadow-lg col-sm-11 p-3 mb-5 bg-white rounded'>
+
+    <div class='container'>
+        <div class='row'>
+            <div class='span4'></div>
+            <div class='span4'><img class='center-block' src='battleship_logo.png' alt="Battleship!"></div>
+            <div class='span4'></div>
+        </div>
+    </div>
+    <p>In order to play, you must select a number of ships from the drop down and then hit start game. After that, the players take turns dragging their ships onto the grid. The rotate button rotates all unplaced ships, and all ships when dropped will have
+        their left/top side placed where the mouse is released. Once setup is finished, each player takes turns choosing a target square on the left grid and firing until one player has destroyed all the other player's ships. The right grid displays your
+        own ships, with your opponent's hits and misses marked there as well.</p>
+    <div id='startingSection'>
+        <select id="numberOfShips">
+                <option selected='selected'>Please select number of ships</option>
+                <option value='1'>1 Ship</option>
+                <option value='2'>2 Ships</option>
+                <option value='3'>3 Ships</option>
+                <option value='4'>4 Ships</option>
+                <option value='5'>5 Ships</option>
+                <option value='6'>6 Ships</option>
+            </select>
+        <p>
+            <p>Choose to play against the AI or player.</p>
+        </p>
+        <div id='AIselection'>
+            <select id="difficulty">
+                    <option selected='selected'>Player</option>
+                    <option value='1'>AI: Easy</option>
+                    <option value='2'>AI: Medium</option>
+                    <option value='3'>AI: Hard</option>
+                </select>
+            <button id='startGame' class='btn btn-primary d-none' onclick="startGame()">Start Game!</button>
+        </div>
+        <h1>Player 1: Please choose your logo!</h1>
+        <div class='userImg1'>
+            <div class='row'>
+                <div class='span3'></div>
+                <div class='span3'><img src='images/skull.png' alt="skull!"></div>
+                <div class='span3'><img src='images/domo.png' alt="domo!"></div>
+                <div class='span3'><img src='images/eggplant.png' alt="eggplant!"></div>
+                <div class='span3'><img src='images/superman.png' alt="superman!"></div>
+                <div class='span3'><img src='images/bart.png' alt="bart!"></div>
+                <div class='span3'><img src='images/simba.png' alt="simba!"></div>
+                <div class='span3'></div>
+            </div>
+            <div>
+                <button id='player1_logo_skull' class="btn-secondary" onclick="playerImageFunc(1, 'skull')">Default &emsp;&emsp;</button>
+                <button id='player1_logo_domo' class="btn-secondary" onclick="playerImageFunc(1, 'domo')">Domo&emsp;&emsp; </button>
+                <button id='player1_logo_eggplant' class="btn-secondary" onclick="playerImageFunc(1, 'eggplant')">Eggplant&emsp;</button>
+                <button id='player1_logo_superman' class="btn-secondary" onclick="playerImageFunc(1, 'superman')">Superman&emsp;</button>
+                <button id='player1_logo_bart' class="btn-secondary" onclick="playerImageFunc(1, 'bart')">&emsp; Bart&emsp;</button>
+                <button id='player1_logo_simba' class="btn-secondary" onclick="playerImageFunc(1, 'simba')">&emsp; Simba&emsp;</button>
+
+            </div>
+        </div>
+        <!-- Change this so that it only appears when player 2 is playing and not AI-->
+        <h1 id='player2header'>Player 2: Please choose your logo!</h1>
+        <div class='userImg2'>
+            <div class='row'>
+                <div class='span10'></div>
+                <div id='player2_skull' class='span10'><img src='images/skull.png' alt="skull!"></div>
+                <div id='player2_domo' class='span10'><img src='images/domo.png' alt="domo!"></div>
+                <div id='player2_eggplant' class='span10'><img src='images/eggplant.png' alt="eggplant!"></div>
+                <div id='player2_superman' class='span10'><img src='images/superman.png' alt="superman!"></div>
+                <div id='player2_bart' class='span10'><img src='images/bart.png' alt="bart!"></div>
+                <div id='player2_simba' class='span10'><img src='images/simba.png' alt="simba!"></div>
+                <div class='span10'></div>
+            </div>
+            <div>
+                <!--CITE EMSP-->
+                <button id='player2_logo_skull' class="btn-secondary" onclick="playerImageFunc(2, 'skull')">Default &emsp;&emsp;</button>
+                <button id='player2_logo_domo' class="btn-secondary" onclick="playerImageFunc(2, 'domo')">Domo&emsp;&emsp; </button>
+                <button id='player2_logo_eggplant' class="btn-secondary" onclick="playerImageFunc(2, 'eggplant')">Eggplant&emsp;</button>
+                <button id='player2_logo_superman' class="btn-secondary" onclick="playerImageFunc(2, 'superman')">Superman&emsp;</button>
+                <button id='player2_logo_bart' class="btn-secondary" onclick="playerImageFunc(2, 'bart')">&emsp; Bart&emsp;</button>
+                <button id='player2_logo_simba' class="btn-secondary" onclick="playerImageFunc(2, 'simba')">&emsp; Simba&emsp;</button>
+
+            </div>
+        </div>
+
+    </div>
+
+    <button id='startNextTurn' class='btn btn-primary d-none' onclick="startNextTurn()">Start Next Turn!</button>
+    <div id='playArea'>
+        <div class="text-center">
+            <div class="row">
+                <div class='col-sm-6' id='player1Area' class='targetBox'>
+                    <h1>Player 1</h1>
+                    <div> <img id="Player1_logo" src="images/skull.png" alt="Skull!"></div>
+
+                    <div class='row'>
+                        <div>
+                            <div class='targetBox' id='player1TargetBox'>
+                                <div class='col-sm-12' id='player1TargetArray'>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="shipBox container" id="player1Display">
+
+                        </div>
+
+
+
+                    </div>
+                    <div id='assistPlayer1' style="float: left;">
+                        <button id='player1Fire' class='btn btn-primary d-none' disabled='disabled' onclick="fireRound(1)">Fire!</button>
+                        <button id='player1FinishStart' class='btn btn-secondary' disabled='disabled' onclick="endPlayer1StartPhase()">End Start Phase</button>
+                        <button id='player1Finish' class='btn btn-secondary d-none' disabled='disabled' onclick="betweenTurns()">End Turn</button>
+                    </div>
+                    <div class='player-one-pieces container' id='player1pieces'>
+                        <button id='player1Rotate' class='btn btn-secondary' style="align-items: center;  margin: 5px" onclick="rotateShips(1)">Rotate Ships</button>
+                        <div id='PatrolArea1'>
+                            <div class="battleships oneByShip oneXoneShip rotate1Patrol" style='z-index:1; position:relative' draggable='true' id='1Patrol'>
+                                <div id="1Patrol-0" ondragstart="dragStart(event)"></div>
+                            </div>
+                        </div>
+
+                        <div class='box' id='AssaultArea1'>
+                            <div class='outer'>
+                                <div class='inner'>
+                                    <div class="battleships twoByShip twoXoneShip rotate1Assault" style='z-index:1' draggable='true' id="1Assault">
+                                        <div id="1Assault-0"></div>
+                                        <div id="1Assault-1"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class='box' id='SubArea1'>
+                            <div class='outer'>
+                                <div class="inner">
+                                    <div class="battleships threeByShip threeXoneShip rotate1Sub" draggable='true' id="1Sub">
+                                        <div id="1Sub-0"></div>
+                                        <div id="1Sub-1"></div>
+                                        <div id="1Sub-2"></div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class='box' id='DestroyArea1'>
+                            <div class='outer'>
+                                <div class="inner">
+                                    <div class="battleships fourByShip fourXoneShip rotate1Destroy" draggable='true' id="1Destroy">
+                                        <div id="1Destroy-0"></div>
+                                        <div id="1Destroy-1"></div>
+                                        <div id="1Destroy-2"></div>
+                                        <div id="1Destroy-3"></div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class='box' id='BattleArea1'>
+                            <div class='outer'>
+                                <div class="inner">
+                                    <div class="battleships fiveByShip fiveXoneShip rotate1Battle" draggable='true' id="1Battle">
+                                        <div id="1Battle-0"></div>
+                                        <div id="1Battle-1"></div>
+                                        <div id="1Battle-2"></div>
+                                        <div id="1Battle-3"></div>
+                                        <div id="1Battle-4"></div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class='box' id='CarrierArea1'>
+                            <div class='outer'>
+                                <div class="inner">
+                                    <div class="battleships sixByShip sixXoneShip rotate1Carrier" draggable='true' id="1Carrier">
+                                        <div id="1Carrier-0"></div>
+                                        <div id="1Carrier-1"></div>
+                                        <div id="1Carrier-2"></div>
+                                        <div id="1Carrier-3"></div>
+                                        <div id="1Carrier-4"></div>
+                                        <div id="1Carrier-5"></div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class='col-sm-6' id='player2Area' class='targetBox'>
+                    <h1>Player 2</h1>
+                    <div> <img id="Player2_logo" src="images/skull.png" alt="Skull!"></div>
+
+                    <div class='row'>
+                        <div class='targetBox' id='player2TargetBox'>
+                            <div class='col-sm-12' id='player2TargetArray'>
+
+                            </div>
+                        </div>
+                        <div class="shipBox container" id="player2Display">
+
+                        </div>
+
+                    </div>
+                    <!--this jsut wont work if none of the buttons show-->
+                    <div id='assistPlayer2' style="float: left;">
+                        <button id='player2Fire' class='btn btn-primary d-none' disabled='disabled' onclick="fireRound(2)">Fire!</button>
+                        <button id='player2FinishStart' class='btn btn-secondary' disabled='disabled' onclick="endPlayer2StartPhase()">End Start Phase</button>
+                        <button id='player2Finish' class='btn btn-secondary d-none' disabled='disabled' onclick="betweenTurns()">End Turn</button>
+                    </div>
+                    <div class='player-two-pieces container' id='player2pieces'>
+                        <button id='player2Rotate' class='btn btn-secondary' style="align-items: center;  margin: 5px" onclick="rotateShips(2)">Rotate Ships</button>
+                        <div id='PatrolArea2'>
+                            <div class="battleships oneByShip oneXoneShip rotate2Patrol" draggable='true' id='2Patrol'>
+                                <div id="2Patrol-0" ondragstart="dragStart(event)"></div>
+                            </div>
+                        </div>
+
+                        <div class='box' id='AssaultArea2'>
+                            <div class='outer'>
+                                <div class='inner'>
+                                    <div class="battleships twoByShip twoXoneShip rotate2Assault" draggable='true' id="2Assault">
+                                        <div id="2Assault-0"></div>
+                                        <div id="2Assault-1"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class='box' id='SubArea2'>
+                            <div class='outer'>
+                                <div class="inner">
+                                    <div class="battleships threeByShip threeXoneShip rotate2Sub" draggable='true' id="2Sub">
+                                        <div id="2Sub-0"></div>
+                                        <div id="2Sub-1"></div>
+                                        <div id="2Sub-2"></div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class='box' id='DestroyArea2'>
+                            <div class='outer'>
+                                <div class="inner">
+                                    <div class="battleships fourByShip fourXoneShip rotate2Destroy" draggable='true' id="2Destroy">
+                                        <div id="2Destroy-0"></div>
+                                        <div id="2Destroy-1"></div>
+                                        <div id="2Destroy-2"></div>
+                                        <div id="2Destroy-3"></div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class='box' id='BattleArea2'>
+                            <div class='outer'>
+                                <div class="inner">
+                                    <div class="battleships fiveByShip fiveXoneShip rotate2Battle" draggable='true' id="2Battle">
+                                        <div id="2Battle-0"></div>
+                                        <div id="2Battle-1"></div>
+                                        <div id="2Battle-2"></div>
+                                        <div id="2Battle-3"></div>
+                                        <div id="2Battle-4"></div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class='box' id='CarrierArea2'>
+                            <div class='outer'>
+                                <div class="inner">
+                                    <div class="battleships sixByShip sixXoneShip rotate2Carrier" draggable='true' id="2Carrier">
+                                        <div id="2Carrier-0"></div>
+                                        <div id="2Carrier-1"></div>
+                                        <div id="2Carrier-2"></div>
+                                        <div id="2Carrier-3"></div>
+                                        <div id="2Carrier-4"></div>
+                                        <div id="2Carrier-5"></div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class='row g-0'>
+            <div class='col-sm-6 remove-padding'>
+
+            </div>
+            <div class='col-sm-6 remove-padding'>
+
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+<script src='jquery.js'></script>
+<script src='battleshipCode.js'></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel='stylesheet' href='main.css'>
+
+</html>

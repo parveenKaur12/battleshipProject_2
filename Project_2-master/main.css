@@ -1,0 +1,233 @@
+.selectionBox{
+    padding: 10px;
+    height: 50px;
+    width: 50px;
+    text-align: center;
+    color:yellow;
+    background-color: #ffffff00;
+}
+
+.shipBox{
+  margin: 5px;
+  height: 450px;
+  width: 500px;
+  display: flex;
+  flex-wrap: wrap;
+  background-size: cover;
+  background-image: url("wave.jpg");
+}
+
+.targetBox{
+  background-image: url("wave.jpg");
+  background-size: cover;
+  display:flex;
+  margin: 5px;
+  height: 450px;
+  width: 500px;
+
+}
+
+.dropBoxShip{
+  height: 50px;
+  width: 50px;
+  text-align: center;
+  background-color: #ffffff00;
+}
+
+.player-one-pieces {
+  margin: 10px;
+  width: 600px;
+  height: 600px;
+  background-color: lightblue;
+}
+
+.player-two-pieces {
+  margin: 10px;
+  width: 600px;
+  height: 600px;
+  background-color: lightblue;
+}
+
+.remove-padding {
+  padding-left:0px;
+  padding-right:0px;
+}
+
+.battleships div {
+  width: 50px;
+  height: 50px;
+
+}
+
+/*outer shells*/
+
+.oneXoneShip {
+  width: 50px;
+  height: 50px;
+  background-color: yellow;
+  transform-origin: 25px 25px;
+  display: block;
+
+}
+
+.twoXoneShip {
+  width: 100px;
+  height: 50px;
+  background-color: orange;
+  transform-origin: 25px 25px;
+  display: block;
+
+}
+
+.threeXoneShip {
+  width: 150px;
+  height: 50px;
+  background-color: red;
+  transform-origin: 25px 25px;
+  display: block;
+
+  /* transform: rotate(90deg) translateX(100px) translateY(100px); */
+}
+
+.fourXoneShip {
+  width: 200px;
+  height: 50px;
+  background-color: pink;
+  transform-origin: 25px 25px;
+  /* transform: rotate(90deg); */
+  display: block;
+
+  /* transform: rotate(90deg) translateX(100px) translateY(100px); */
+}
+
+.fiveXoneShip {
+  width: 250px;
+  height: 50px;
+  background-color: purple;
+  transform-origin: 25px 25px;
+  /* transform: rotate(90deg) translateX(100px) translateY(100px); */
+  display: block;
+
+
+}
+
+.sixXoneShip {
+  width: 300px;
+  height: 50px;
+  background-color: blue;
+  transform-origin: 25px 25px;
+  /* transform: rotate(90deg); */
+  display: block;
+
+}
+
+/*Inner boxez*/
+.inner{
+  padding: 30% 0;
+  height: 0;
+  display: flex;
+}
+.outer{
+  display: table;
+}
+.box{
+  display: inline-block;
+}
+
+
+.oneByShip{
+  background-image: url("Patrol.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-size: contain;
+  background-size: cover;
+}
+.twoByShip{
+  background-image: url("Assault.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-size: contain;
+  background-size: cover;
+}
+.threeByShip{
+  background-image: url("Submarine.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-size: contain;
+  background-size: cover;
+}
+.fourByShip{
+  background-image: url("Destroyer.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-size: contain;
+  background-size: cover;
+}
+.fiveByShip{
+  background-image: url("Battleship.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-size: contain;
+  background-size: cover;
+}
+.sixByShip{
+  background-image: url("Carrier.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-size: contain;
+  background-size: cover;
+}
+
+.rotate1Patrol {
+
+}
+
+.rotate1Assault {
+
+}
+
+.rotate1Sub {
+
+}
+
+.rotate1Destroy {
+
+}
+
+.rotate1Battle {
+
+}
+
+.rotate1Carrier {
+
+}
+
+.rotate2Patrol {
+
+}
+
+.rotate2Assault {
+
+}
+
+.rotate2Sub {
+
+}
+
+.rotate2Destroy {
+
+}
+
+.rotate2Battle {
+
+}
+
+.rotate2Carrier {
+
+}
